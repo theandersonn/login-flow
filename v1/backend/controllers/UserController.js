@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const createUserToken = require('../helpers/create-user-token');
 
 module.exports = class UserController {
   static async register(req, res) {
@@ -34,7 +35,7 @@ module.exports = class UserController {
     // check if user exists
     const userExists = await User.findOne({ email: email });
     if (userExists) {
-      res.status(422).json({ message: 'Por favorm utilize outro e-mail.' });
+      res.status(422).json({ message: 'Por favor utilize outro e-mail.' });
       return;
     }
 
@@ -51,10 +52,7 @@ module.exports = class UserController {
 
     try {
       const newUser = await user.save();
-      res.status(201).json({
-        message: 'Usuário criado!',
-        data: newUser
-      });
+      await createUserToken(newUser, req, res);
     } catch (error) {
       res.status(500).json({ message: error });
     }
