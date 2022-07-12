@@ -11,16 +11,13 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
-        "jsx": true,
-        "modules": true
-      },
+      "jsx": true,
+      "modules": true
+    },
     "ecmaVersion": 8,
     "sourceType": "module"
   },
-  "plugins": [
-      "react",
-      "react-hooks"
-  ],
+  "plugins": ["react", "react-hooks"],
   "extends": [
     "airbnb",
     "prettier",
@@ -30,10 +27,10 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-      "react/react-in-jsx-scope": "off",
-      "no-unused-vars": "warn",
-      "import/prefer-default-export": "off",
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "react/function-component-definition": 0
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "warn",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/function-component-definition": 0
   }
 }
