@@ -3,7 +3,7 @@ const App = () => {
     <div>
       <p>Register login</p>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
