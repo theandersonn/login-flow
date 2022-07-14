@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Context } from '../../context/UserContext';
 import Input from '../../components/Input';
 
 export const Register = () => {
   const [user, setUser] = useState({});
+  const { register } = useContext(Context);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -10,6 +12,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    register(user);
   };
 
   return (
