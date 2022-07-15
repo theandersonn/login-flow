@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Context } from '../../context/UserContext';
 import Input from '../../components/Input';
+import Message from '../../components/Message';
 
 export const Register = () => {
   const [user, setUser] = useState({});
@@ -17,6 +18,7 @@ export const Register = () => {
 
   return (
     <section>
+      <Message />
       <h1>Registrar</h1>
       <form onSubmit={handleSubmit}>
         <Input
