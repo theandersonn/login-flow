@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Context } from '../../context/UserContext';
 
 export const Navbar = () => {
-  const { authenticated } = useContext(Context);
+  const { authenticated, logout } = useContext(Context);
 
   return (
     <ul>
@@ -12,11 +12,11 @@ export const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
 
-      {authenticated && <p>Você está logado</p>}
-
-      <li>
-        <Link to="/">Sair</Link>
-      </li>
+      {authenticated && (
+        <li onClick={() => logout()} aria-hidden="true">
+          Sair
+        </li>
+      )}
     </ul>
   );
 };
