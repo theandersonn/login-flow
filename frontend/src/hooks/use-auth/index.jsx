@@ -19,7 +19,8 @@ export default function useAuth() {
 
   async function authUser(data) {
     setAuthenticated(true);
-    navigate('/');
+    localStorage.setItem('token', JSON.stringify(data.token));
+    navigate('/home');
   }
 
   const register = async (user) => {
