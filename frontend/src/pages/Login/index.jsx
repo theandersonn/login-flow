@@ -1,15 +1,27 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../components/Input';
+import Message from '../../components/Message';
 import { Context } from '../../context/UserContext';
 
 export const Login = () => {
-  const handleChange = () => {};
+  const [user, setUser] = useState({});
+  const { login } = useContext(Context);
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(user);
+  };
 
   return (
     <>
+      <Message />
       <h1>Sign in to app</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           text="Email"
           type="email"
