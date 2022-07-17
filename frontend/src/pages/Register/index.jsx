@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Context } from '../../context/UserContext';
 import Input from '../../components/Input';
 import Message from '../../components/Message';
@@ -19,37 +20,40 @@ export const Register = () => {
   return (
     <section>
       <Message />
-      <h1>Registrar</h1>
+      <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <Input
-          text="Nome"
+          text="Name"
           type="text"
           name="name"
-          placeholder="Digite o seu nome"
+          placeholder="Your name"
           handleOnChange={handleChange}
         />
         <Input
-          text="E-mail"
+          text="Email"
           type="email"
           name="email"
-          placeholder="Digite o seu email"
+          placeholder="Your email address"
           handleOnChange={handleChange}
         />
         <Input
-          text="Senha"
+          text="Password"
           type="password"
           name="password"
-          placeholder="Digite o seu nome"
+          placeholder="Create a password"
           handleOnChange={handleChange}
         />
         <Input
-          text="Confirmação de senha"
+          text="Password confirmation"
           type="password"
           name="confirmPassword"
-          placeholder="Confirme a sua senha"
+          placeholder="Confirmation your password"
           handleOnChange={handleChange}
         />
-        <input type="submit" value="Cadastrar" />
+        <input type="submit" value="Sign up" />
+
+        <p>Do you have an account?</p>
+        <Link to="/login">Sign in</Link>
       </form>
     </section>
   );
