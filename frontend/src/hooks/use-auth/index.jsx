@@ -1,26 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFlashMessage from '../use-flash-message';
 import api from '../../utils/api';
 
 export default function useAuth() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(
+    !!localStorage.getItem('token')
+  );
   const { setFlashMessage } = useFlashMessage();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const hasToken = useCallback(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
       api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
       setAuthenticated(true);
+      navigate('/');
     }
-  }, []);
+  }, [navigate]);
 
   async function authUser(data) {
     setAuthenticated(true);
     localStorage.setItem('token', JSON.stringify(data.token));
-    navigate('/home');
+    navigate('/');
   }
 
   const register = async (user) => {
@@ -67,9 +70,12 @@ export default function useAuth() {
     localStorage.removeItem('token');
     api.defaults.headers.Authorization = undefined;
     navigate('/login');
-
     setFlashMessage(msgText, msgType);
   }
+
+  useEffect(() => {
+    hasToken();
+  }, [hasToken]);
 
   return { authenticated, register, logout, login };
 }

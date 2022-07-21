@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext } from 'react';
 import useAuth from '../hooks/use-auth';
 
