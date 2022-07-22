@@ -1,10 +1,8 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
-import { Context } from '../../context/UserContext';
+import { useAuth } from '../../hooks/use-auth';
 
 export const Navbar = () => {
-  const { authenticated, logout } = useContext(Context);
+  const { authenticated, logout } = useAuth();
 
   return (
     <ul>

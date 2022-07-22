@@ -1,14 +1,22 @@
-import { useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFlashMessage from '../use-flash-message';
 import api from '../../utils/api';
 
-export default function useAuth() {
+const AuthContext = createContext();
+
+const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(
     !!localStorage.getItem('token')
   );
   const { setFlashMessage } = useFlashMessage();
   const navigate = useNavigate();
+
+  async function authUser(data) {
+    setAuthenticated(true);
+    localStorage.setItem('token', JSON.stringify(data.token));
+    navigate('/');
+  }
 
   const hasToken = useCallback(() => {
     const token = localStorage.getItem('token');
@@ -20,11 +28,7 @@ export default function useAuth() {
     }
   }, [navigate]);
 
-  async function authUser(data) {
-    setAuthenticated(true);
-    localStorage.setItem('token', JSON.stringify(data.token));
-    navigate('/');
-  }
+
 
   const register = async (user) => {
     let msgText = 'Cadastro realizado com sucesso';
@@ -77,5 +81,13 @@ export default function useAuth() {
     hasToken();
   }, [hasToken]);
 
-  return { authenticated, register, logout, login };
+  return (
+    <AuthContext.Provider value={{ authenticated, register, logout, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
+
+const useAuth = () => useContext(AuthContext);
+
+export { AuthProvider, useAuth };

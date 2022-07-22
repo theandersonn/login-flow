@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../context/UserContext';
+import { useAuth } from '../../hooks/use-auth';
 import Input from '../../components/Input';
 import Message from '../../components/Message';
 
 export const Register = () => {
   const [user, setUser] = useState({});
-  const { register } = useContext(Context);
+  const { register } = useAuth();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
