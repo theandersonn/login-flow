@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFlashMessage from '../use-flash-message';
 import api from '../../utils/api';
@@ -27,8 +33,6 @@ const AuthProvider = ({ children }) => {
       navigate('/');
     }
   }, [navigate]);
-
-
 
   const register = async (user) => {
     let msgText = 'Cadastro realizado com sucesso';
@@ -86,7 +90,7 @@ const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 const useAuth = () => useContext(AuthContext);
 
