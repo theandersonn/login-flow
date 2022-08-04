@@ -1,0 +1,15 @@
+.section-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 39px);
+  padding: 1.5rem;
+  background-color: #ecf0f1;
+}
+
+.section-page h2 {
+  margin-bottom: 1.2rem;
+}
+
+.section-page p {
+  margin-bottom: 1.6rem;
+}
