@@ -5,6 +5,7 @@ import {
   useEffect,
   useCallback,
 } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import useFlashMessage from '../use-flash-message';
 import api from '../../utils/api';
@@ -93,5 +94,9 @@ const AuthProvider = ({ children }) => {
 };
 
 const useAuth = () => useContext(AuthContext);
+
+AuthProvider.propTypes = {
+  children: PropTypes.node,
+};
 
 export { AuthProvider, useAuth };
