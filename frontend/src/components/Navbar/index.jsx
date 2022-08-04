@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/use-auth';
 
 export const Navbar = () => {
-  const { authenticated, logout } = useAuth();
+  const { authenticated, handleLogout } = useAuth();
 
   return (
     <ul>
@@ -11,7 +11,7 @@ export const Navbar = () => {
       </li>
 
       {authenticated && (
-        <li onClick={() => logout()} aria-hidden="true">
+        <li onClick={() => handleLogout()} aria-hidden="true">
           Sair
         </li>
       )}

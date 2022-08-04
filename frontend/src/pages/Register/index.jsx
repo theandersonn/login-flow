@@ -6,7 +6,7 @@ import Message from '../../components/Message';
 
 export const Register = () => {
   const [user, setUser] = useState({});
-  const { register } = useAuth();
+  const { handleRegister } = useAuth();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -14,7 +14,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(user);
+    handleRegister(user);
   };
 
   return (

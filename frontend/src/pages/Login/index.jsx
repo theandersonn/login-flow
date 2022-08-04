@@ -6,7 +6,7 @@ import Message from '../../components/Message';
 
 export const Login = () => {
   const [user, setUser] = useState({});
-  const { login } = useAuth();
+  const { handleLogin } = useAuth();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -14,7 +14,7 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(user);
+    handleLogin(user);
   };
 
   return (

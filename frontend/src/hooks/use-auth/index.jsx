@@ -19,11 +19,11 @@ const AuthProvider = ({ children }) => {
   const { setFlashMessage } = useFlashMessage();
   const navigate = useNavigate();
 
-  async function authUser(data) {
+  const verifyUserAuthenticated = async (data) => {
     setAuthenticated(true);
     localStorage.setItem('token', JSON.stringify(data.token));
     navigate('/');
-  }
+  };
 
   const hasToken = useCallback(() => {
     const token = localStorage.getItem('token');
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [navigate]);
 
-  const register = async (user) => {
+  const handleRegister = async (user) => {
     let msgText = 'Cadastro realizado com sucesso';
     let msgType = 'success';
 
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
         return response.data;
       });
 
-      await authUser(data);
+      await verifyUserAuthenticated(data);
     } catch (error) {
       msgText = error.response.data.message;
       msgType = 'error';
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
     setFlashMessage(msgText, msgType);
   };
 
-  async function login(user) {
+  const handleLogin = async (user) => {
     let msgText = 'Login realizado com sucesso';
     let msgType = 'success';
 
@@ -62,16 +62,16 @@ const AuthProvider = ({ children }) => {
         return response.data;
       });
 
-      await authUser(data);
+      await verifyUserAuthenticated(data);
     } catch (error) {
       msgText = error.response.data.message;
       msgType = 'error';
     }
 
     setFlashMessage(msgText, msgType);
-  }
+  };
 
-  function logout() {
+  const handleLogout = () => {
     const msgText = 'Logout realizado com sucesso';
     const msgType = 'success';
 
@@ -80,14 +80,16 @@ const AuthProvider = ({ children }) => {
     api.defaults.headers.Authorization = undefined;
     navigate('/login');
     setFlashMessage(msgText, msgType);
-  }
+  };
 
   useEffect(() => {
     hasToken();
   }, [hasToken]);
 
   return (
-    <AuthContext.Provider value={{ authenticated, register, logout, login }}>
+    <AuthContext.Provider
+      value={{ authenticated, handleRegister, handleLogout, handleLogin }}
+    >
       {children}
     </AuthContext.Provider>
   );
