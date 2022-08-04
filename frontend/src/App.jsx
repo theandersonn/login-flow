@@ -3,6 +3,8 @@ import { Login, Register, Home, Error } from './pages';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './hooks/use-auth';
 
+import './styles/global.css';
+
 const App = () => {
   return (
     <Router>
