@@ -1,20 +1,28 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/use-auth';
 
+import './styles.css';
+
 export const Navbar = () => {
   const { authenticated, handleLogout } = useAuth();
 
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
+    <nav className="navbar">
+      <div className="navbar-brand">
+        <h1>your brand</h1>
+      </div>
 
-      {authenticated && (
-        <li onClick={() => handleLogout()} aria-hidden="true">
-          Sair
+      <ul className="navbar-menu">
+        <li>
+          <Link to="/">Home</Link>
         </li>
-      )}
-    </ul>
+
+        {authenticated && (
+          <li onClick={() => handleLogout()} aria-hidden="true">
+            Sair
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 };
