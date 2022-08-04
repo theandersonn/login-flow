@@ -1,10 +1,10 @@
 .message {
-  width: 60%;
+  width: 100%;
   padding: 1rem;
-  border: 1px solid #000;
+  border: .1rem solid #000;
   margin: 1.2rem auto;
   text-align: center;
-  border-radius: 5px;
+  border-radius: .5rem;
 }
 
 .success {
