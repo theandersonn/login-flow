@@ -4,6 +4,8 @@ import { useAuth } from '../../hooks/use-auth';
 import Input from '../../components/Input';
 import Message from '../../components/Message';
 
+import './styles.css';
+
 export const Register = () => {
   const [user, setUser] = useState({});
   const { handleRegister } = useAuth();
@@ -18,43 +20,50 @@ export const Register = () => {
   };
 
   return (
-    <section>
-      <Message />
-      <h1>Sign up</h1>
-      <form onSubmit={handleSubmit}>
-        <Input
-          text="Name"
-          type="text"
-          name="name"
-          placeholder="Your name"
-          handleOnChange={handleChange}
-        />
-        <Input
-          text="Email"
-          type="email"
-          name="email"
-          placeholder="Your email address"
-          handleOnChange={handleChange}
-        />
-        <Input
-          text="Password"
-          type="password"
-          name="password"
-          placeholder="Create a password"
-          handleOnChange={handleChange}
-        />
-        <Input
-          text="Password confirmation"
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirmation your password"
-          handleOnChange={handleChange}
-        />
-        <input type="submit" value="Sign up" />
+    <section className="section-register">
+      <div className="wrapper-form-register">
+        <form className="form-register" onSubmit={handleSubmit}>
+          <Message />
+          <h1>Sign Up</h1>
 
-        <p>Do you have an account?</p>
-        <Link to="/login">Sign in</Link>
-      </form>
+          <Input
+            text="Name"
+            type="text"
+            name="name"
+            placeholder="Your name"
+            handleOnChange={handleChange}
+          />
+          <Input
+            text="Email"
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            handleOnChange={handleChange}
+          />
+          <Input
+            text="Password"
+            type="password"
+            name="password"
+            placeholder="Create a password"
+            handleOnChange={handleChange}
+          />
+          <Input
+            text="Password confirmation"
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirmation your password"
+            handleOnChange={handleChange}
+          />
+          <input className="btn btn-primary" type="submit" value="Sign up" />
+
+          <div className="box-haveanaccount">
+            <p>Do you have an account?</p>
+            <Link className="btn btn-secondary" to="/login">
+              Sign in
+            </Link>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };

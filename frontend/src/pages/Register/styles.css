@@ -1,41 +1,41 @@
-.section-login {
+.section-register {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   gap: 32px;
 }
 
-.section-login::before {
+.section-register::before {
   display: block;
   content: '';
-  background: url("../../images/city-1.jpeg");
+  background: url("../../images/city-2.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.wrapper-form-login {
+.wrapper-form-register {
   display: flex;
   height: 100vh;
   align-items: center;
   width: 360px;
 }
 
-.form-login {
+.form-register {
   padding: 32px;
   flex: 1;
 }
 
-.form-login h1 {
+.form-register h1 {
   margin-bottom: 2.4rem;
   font-size: 3.2rem;
   font-weight: 700;
 }
 
-.box-newtoapp {
+.box-haveanaccount {
   margin-top: 3.2rem;
 }
 
-.box-newtoapp p {
+.box-haveanaccount p {
   font-size: 1.2rem;
   margin-bottom: 1.6rem;
 
@@ -43,8 +43,8 @@
   text-align: center;
 }
 
-.box-newtoapp p:before,
-.box-newtoapp p:after {
+.box-haveanaccount p:before,
+.box-haveanaccount p:after {
   background-color: #bebebe;
   content: "";
   display: inline-block;
@@ -54,12 +54,12 @@
   width: 50%;
 }
 
-.box-newtoapp p:before {
+.box-haveanaccount p:before {
   right: 0.5em;
   margin-left: -50%;
 }
 
-.box-newtoapp p:after {
+.box-haveanaccount p:after {
   left: 0.5em;
   margin-right: -50%;
 }

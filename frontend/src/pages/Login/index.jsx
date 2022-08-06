@@ -21,35 +21,37 @@ export const Login = () => {
 
   return (
     <section className="section-login">
-      <form className="form-login" onSubmit={handleSubmit}>
-        <Message />
-        <h2>Sign In</h2>
+      <div className="wrapper-form-login">
+        <form className="form-login" onSubmit={handleSubmit}>
+          <Message />
+          <h1>Sign In</h1>
 
-        <Input
-          text="Email"
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          handleOnChange={handleChange}
-        />
+          <Input
+            text="Email"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            handleOnChange={handleChange}
+          />
 
-        <Input
-          text="Password"
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          handleOnChange={handleChange}
-        />
+          <Input
+            text="Password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            handleOnChange={handleChange}
+          />
 
-        <input className="btn btn-primary" type="submit" value="Sign in" />
+          <input className="btn btn-primary" type="submit" value="Sign in" />
 
-        <div className="box-newtoapp">
-          <p>New to App?</p>
-          <Link className="btn btn-secondary" to="/register">
-            Create your app account
-          </Link>
-        </div>
-      </form>
+          <div className="box-newtoapp">
+            <p>New to App?</p>
+            <Link className="btn btn-secondary" to="/register">
+              Create your app account
+            </Link>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };
