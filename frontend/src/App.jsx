@@ -4,6 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './hooks/use-auth';
 
 import './styles/global.css';
+import './styles/general.css';
 
 const App = () => {
   return (

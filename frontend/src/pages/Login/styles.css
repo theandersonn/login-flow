@@ -1,0 +1,59 @@
+.section-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  gap: 32px;
+}
+
+.section-login::before {
+  display: block;
+  content: '';
+  background: url("../../images/city-1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.form-login {
+  margin-top: 25vh;
+  padding: 32px;
+  max-width: 360px;
+}
+
+.form-login h2 {
+  margin-bottom: 2.4rem;
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.box-newtoapp {
+  margin-top: 3.2rem;
+}
+
+.box-newtoapp p {
+  font-size: 1.2rem;
+  margin-bottom: 1.6rem;
+
+  overflow: hidden;
+  text-align: center;
+}
+
+.box-newtoapp p:before,
+.box-newtoapp p:after {
+  background-color: #bebebe;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.box-newtoapp p:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.box-newtoapp p:after {
+  left: 0.5em;
+  margin-right: -50%;
+}

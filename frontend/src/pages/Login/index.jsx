@@ -4,6 +4,8 @@ import { useAuth } from '../../hooks/use-auth';
 import Input from '../../components/Input';
 import Message from '../../components/Message';
 
+import './styles.css';
+
 export const Login = () => {
   const [user, setUser] = useState({});
   const { handleLogin } = useAuth();
@@ -18,10 +20,11 @@ export const Login = () => {
   };
 
   return (
-    <>
-      <Message />
-      <h1>Sign in to app</h1>
-      <form onSubmit={handleSubmit}>
+    <section className="section-login">
+      <form className="form-login" onSubmit={handleSubmit}>
+        <Message />
+        <h2>Sign In</h2>
+
         <Input
           text="Email"
           type="email"
@@ -38,11 +41,15 @@ export const Login = () => {
           handleOnChange={handleChange}
         />
 
-        <input type="submit" value="Sign in" />
+        <input className="btn btn-primary" type="submit" value="Sign in" />
 
-        <p>New to App?</p>
-        <Link to="/register">Create your app account</Link>
+        <div className="box-newtoapp">
+          <p>New to App?</p>
+          <Link className="btn btn-secondary" to="/register">
+            Create your app account
+          </Link>
+        </div>
       </form>
-    </>
+    </section>
   );
 };
