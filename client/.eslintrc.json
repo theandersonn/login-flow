@@ -15,7 +15,7 @@
       "modules": true
     },
     "ecmaVersion": 8,
-    "sourceType": "module"
+    "sourceType": "module",
   },
   "plugins": ["react", "react-hooks"],
   "extends": [
