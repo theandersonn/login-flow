@@ -1,6 +1,6 @@
-const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 const createUserToken = require('../helpers/create-user-token');
 const getToken = require('../helpers/get-token');
 const getUserByToken = require('../helpers/get-user-by-token');
@@ -26,17 +26,21 @@ module.exports = class UserController {
     }
 
     if (!confirmPassword) {
-      res.status(422).json({ message: 'A confirmação de senha é obrigatória.' });
+      res
+        .status(422)
+        .json({ message: 'A confirmação de senha é obrigatória.' });
       return;
     }
 
     if (password !== confirmPassword) {
-      res.status(422).json({ message: 'A senha e a confirmação de senha precisam ser iguais.' });
+      res.status(422).json({
+        message: 'A senha e a confirmação de senha precisam ser iguais.',
+      });
       return;
     }
 
     // check if user exists
-    const userExists = await User.findOne({ email: email });
+    const userExists = await User.findOne({ email });
     if (userExists) {
       res.status(422).json({ message: 'Por favor utilize outro e-mail.' });
       return;
@@ -50,7 +54,7 @@ module.exports = class UserController {
     const user = new User({
       name,
       email,
-      password: passwordHash
+      password: passwordHash,
     });
 
     try {
@@ -59,7 +63,7 @@ module.exports = class UserController {
     } catch (error) {
       res.status(500).json({ message: error });
     }
-  }  
+  }
 
   static async login(req, res) {
     const { email, password } = req.body;
@@ -75,9 +79,11 @@ module.exports = class UserController {
     }
 
     // check if user exists
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email });
     if (!user) {
-      res.status(422).json({ message: 'Não há usuário cadastrado com este email.' });
+      res
+        .status(422)
+        .json({ message: 'Não há usuário cadastrado com este email.' });
       return;
     }
 
@@ -92,7 +98,7 @@ module.exports = class UserController {
   }
 
   static async checkUser(req, res) {
-    let currentUser
+    let currentUser;
 
     if (req.headers.authorization) {
       const token = getToken(req);
@@ -120,7 +126,7 @@ module.exports = class UserController {
   static async editUser(req, res) {
     // check if user exists
     const token = getToken(req);
-    const user = await getUserByToken(token);
+    const user = await getUserByToken(res, token);
     const { name, email, password, confirmPassword } = req.body;
 
     // validations
@@ -137,7 +143,7 @@ module.exports = class UserController {
     }
 
     // check if email has already taken
-    const userExists = await User.findOne({email: email});
+    const userExists = await User.findOne({ email });
     if (user.email !== email && userExists) {
       res.status(422).json({ message: 'Por favor utilize outro email!' });
       return;
@@ -148,25 +154,27 @@ module.exports = class UserController {
     if (password !== confirmPassword) {
       res.status(422).json({ message: 'As senhas não conferem!' });
       return;
-    } else if (password == confirmPassword && password != null) {
+    }
+    // eslint-disable-next-line eqeqeq
+    if (password == confirmPassword && password != null) {
       // create a password
       const salt = await bcrypt.genSalt(12);
       const passwordHash = await bcrypt.hash(password, salt);
       user.password = passwordHash;
-    } try {
+    }
+    try {
       // returns user updated data
       await User.findOneAndUpdate(
         { _id: user._id },
         { $set: user },
-        { new: true }
-      )
+        { new: true },
+      );
 
       res.status(200).json({
         message: 'Usuário atualizado com sucesso!',
-      })
+      });
     } catch (error) {
-      res.status(500).json({ message: err });
-      return;
+      res.status(500).json({ message: error });
     }
   }
-}
+};

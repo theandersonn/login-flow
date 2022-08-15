@@ -1,5 +1,5 @@
-
 const mongoose = require('../db/conn');
+
 const { Schema } = mongoose;
 
 const User = mongoose.model(
@@ -8,19 +8,19 @@ const User = mongoose.model(
     {
       name: {
         type: String,
-        required: true
+        required: true,
       },
       email: {
         type: String,
-        required: true
+        required: true,
       },
       password: {
         type: String,
-        required: true
+        required: true,
       },
     },
-  { timestamps: true }
-  )
+    { timestamps: true },
+  ),
 );
 
 module.exports = User;
