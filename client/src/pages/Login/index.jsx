@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/use-auth';
+import { AuthContext } from '../../contexts/AuthContext';
 import Input from '../../components/Input';
 import Message from '../../components/Message';
 
@@ -8,7 +8,7 @@ import './styles.css';
 
 export const Login = () => {
   const [user, setUser] = useState({});
-  const { handleLogin } = useAuth();
+  const { handleLogin } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });

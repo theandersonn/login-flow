@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login, Register, Home, Error } from './pages';
 import PrivateRoute from './components/PrivateRoute';
-import { AuthProvider } from './hooks/use-auth';
+import { AuthProvider } from './contexts/AuthContext';
 
 import './styles/global.css';
 import './styles/general.css';

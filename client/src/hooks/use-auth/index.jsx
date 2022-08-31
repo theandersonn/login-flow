@@ -1,21 +1,11 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFlashMessage from '../use-flash-message';
 import api from '../../utils/api';
 
-const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  const [authenticated, setAuthenticated] = useState(
-    !!localStorage.getItem('token')
-  );
+export const useAuth = () => {
+  const [authenticated, setAuthenticated] = useState(!!localStorage.getItem('token'));
   const { setFlashMessage } = useFlashMessage();
   const navigate = useNavigate();
 
@@ -86,19 +76,5 @@ const AuthProvider = ({ children }) => {
     hasToken();
   }, [hasToken]);
 
-  return (
-    <AuthContext.Provider
-      value={{ authenticated, handleRegister, handleLogout, handleLogin }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  return { authenticated, handleRegister, handleLogout, handleLogin }
 };
-
-const useAuth = () => useContext(AuthContext);
-
-AuthProvider.propTypes = {
-  children: PropTypes.node,
-};
-
-export { AuthProvider, useAuth };
